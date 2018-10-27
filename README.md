@@ -22,16 +22,15 @@ For this script to work, rcon must be enabled on the server, by setting `enable-
 
 ```php
 $host = 'some.minecraftserver.com'; // Server host name or IP
-$port = 25575;                      // Port rcon is listening on
+$port = 25575; // Port rcon is listening on
 $password = 'server-rcon-password'; // rcon.password setting set in server.properties
-$timeout = 3;                       // How long to timeout.
+$timeout = 3; // How long to timeout.
 
-use Thedudeguy\Rcon;
+use App\Rcon;
 
 $rcon = new Rcon($host, $port, $password, $timeout);
 
-if ($rcon->connect())
-{
+if ($rcon->connect()) {
   $rcon->sendCommand("say Hello World!");
 }
 ```
