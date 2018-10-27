@@ -1,6 +1,6 @@
 PHP-Minecraft-Rcon
 ==================
-[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/thedudeguy/PHP-Minecraft-Rcon/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/thedudeguy/PHP-Minecraft-Rcon/?branch=master)
+[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/Chipka94/PHP-Minecraft-Rcon/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/Chipka94/PHP-Minecraft-Rcon/?branch=master)
 
 Simple Rcon class for php.
 
