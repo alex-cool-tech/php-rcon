@@ -132,7 +132,7 @@ class Rcon
      *
      * @return boolean|mixed
      */
-    public function sendCommand($command)
+    public function sendCommand(string $command)
     {
         if (!$this->isConnected()) {
             return false;
@@ -179,13 +179,13 @@ class Rcon
     /**
      * Writes a packet to the socket stream.
      *
-     * @param $packetId
-     * @param $packetType
-     * @param string $packetBody
+     * @param $id
+     * @param $type
+     * @param string $body
      *
      * @return void
      */
-    private function writePacket($packetId, $packetType, $packetBody)
+    private function writePacket($id, $type, $body = '')
     {
         /*
          * Size -> 32-bit little-endian Signed Integer Varies, see below.
@@ -196,9 +196,8 @@ class Rcon
          */
 
         //create packet
-        $packet = pack('VV', $packetId, $packetType);
-        $packet = $packet . $packetBody . "\x00";
-        $packet = $packet . "\x00";
+        $packet = pack('VV', $id, $type); // ID, type
+        $packet .= $body . "\x00\x00"; // body, 2 null bytes
 
         // get packet size.
         $packetSize = strlen($packet);
