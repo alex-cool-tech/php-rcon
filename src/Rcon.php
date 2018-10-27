@@ -185,7 +185,7 @@ class Rcon
      *
      * @return void
      */
-    private function writePacket($id, $type, $body = '')
+    private function writePacket(int $id, int $type, $body = '')
     {
         /*
          * Size -> 32-bit little-endian Signed Integer Varies, see below.
