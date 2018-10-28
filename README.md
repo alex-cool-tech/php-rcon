@@ -1,15 +1,17 @@
-PHP-Minecraft-Rcon
+PHP-Rcon
 ==================
-[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/Chipka94/PHP-Minecraft-Rcon/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/Chipka94/PHP-Minecraft-Rcon/?branch=master)
-[![Build Status](https://scrutinizer-ci.com/g/Chipka94/PHP-Minecraft-Rcon/badges/build.png?b=master)](https://scrutinizer-ci.com/g/Chipka94/PHP-Minecraft-Rcon/build-status/master)
+[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/alexcool94/PHP-Rcon/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/alexcool94/PHP-Rcon/?branch=master)
+[![Build Status](https://scrutinizer-ci.com/g/alexcool94/PHP-Rcon/badges/build.png?b=master)](https://scrutinizer-ci.com/g/alexcool94/PHP-Rcon/build-status/master)
 
 Simple Rcon class for php.
+
+Project forked from [thedudeguy/PHP-Minecraft-Rcon](https://github.com/thedudeguy/PHP-Minecraft-Rcon)
 
 ## Installation
 ### Using Composer
 This Rcon library may be installed by issuing the following command:
 ```bash
-$ composer require thedudeguy/rcon
+$ composer require alex.cool/rcon
 ```
 ### Not Using Composer
 If not using Composer, just place the Rcon.php file in your project and include it in your PHP script:
