@@ -1,5 +1,6 @@
 {
 	"name": "alex.cool/rcon",
+	"type": "library",
 	"description": "Simple Rcon class for php",
 	"keywords": ["rcon", "minecraft"],
 	"homepage": "https://github.com/alexcool94/PHP-Rcon",
@@ -7,7 +8,8 @@
 	"authors": [
 		{
 			"name": "Aleksandr Kulina",
-			"email": "chipka94@gmail.com"
+			"email": "chipka94@gmail.com",
+			"role": "Developer"
 		}
 	],
 	"support": {
