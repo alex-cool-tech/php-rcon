@@ -6,19 +6,18 @@
 	"homepage": "https://github.com/alexcool94/PHP-Rcon",
 	"license": "MIT",
 	"authors": [
-		{
-			"name": "Aleksandr Kulina",
-			"email": "chipka94@gmail.com",
-			"role": "Developer"
-		}
+		{"name": "Aleksandr Kulina", "email": "chipka94@gmail.com"}
 	],
+	"require": {
+		"php": "^7.1"
+	},
 	"support": {
 		"issues": "https://github.com/alexcool94/PHP-Rcon/issues",
 		"source": "https://github.com/alexcool94/PHP-Rcon/tree/master"
 	},
 	"autoload": {
 		"psr-4": { 
-			"App\\": "src/"
+			"AlexCool\\Rcon\\": "src/"
 		}
     } 
 }

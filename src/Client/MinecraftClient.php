@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace AlexCool\Rcon\Client;
 
 /**
  * See https://developer.valvesoftware.com/wiki/Source_RCON_Protocol for
@@ -11,9 +11,9 @@ namespace App;
  */
 
 /**
- * @package App
+ * @package AlexCool\Rcon\Client
  */
-class Rcon
+class MinecraftClient implements ClientInterface
 {
     const SERVER_DATA_AUTH = 3;
     const SERVER_DATA_AUTH_RESPONSE = 2;
