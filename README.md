@@ -27,7 +27,7 @@ $port = 25575; // Port rcon is listening on
 $password = 'server-rcon-password'; // rcon.password setting set in server.properties
 $timeout = 3; // How long to timeout.
 
-$rcon = new Rcon($host, $port, $password, $timeout);
+$rcon = new MinecraftClient($host, $port, $password, $timeout);
 
 if ($rcon->connect()) {
   $rcon->sendCommand("say Hello World!");
