@@ -18,7 +18,6 @@ $ composer require alex.cool/rcon
 For this script to work, rcon must be enabled on the server, by setting `enable-rcon=true` in the server's `server.properties` file. A password must also be set, and provided in the script.
 
 ```php
-
 require_once __DIR__ . '/vendor/autoload.php';
 
 use AlexCool\Rcon\Client\MinecraftClient;
