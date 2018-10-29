@@ -13,11 +13,6 @@ This Rcon library may be installed by issuing the following command:
 ```bash
 $ composer require alex.cool/rcon
 ```
-### Not Using Composer
-If not using Composer, just place the Rcon.php file in your project and include it in your PHP script:
-```php
-require_once('Rcon.php');
-```
 
 ## Example
 For this script to work, rcon must be enabled on the server, by setting `enable-rcon=true` in the server's `server.properties` file. A password must also be set, and provided in the script.
