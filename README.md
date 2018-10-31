@@ -21,15 +21,27 @@ For this script to work, rcon must be enabled on the server, by setting `enable-
 require_once __DIR__ . '/vendor/autoload.php';
 
 use AlexCool\Rcon\Client\MinecraftClient;
+use AlexCool\Rcon\Command\Wrapper\Minecraft\BukkitCommandWrapper;
+use AlexCool\Rcon\Utils\CommandFormatter;
 
 $host = 'some.minecraftserver.com'; // Server host name or IP
 $port = 25575; // Port rcon is listening on
 $password = 'server-rcon-password'; // rcon.password setting set in server.properties
 $timeout = 3; // How long to timeout.
 
-$rcon = new MinecraftClient($host, $port, $password, $timeout);
+$client = new Swoole\Client(SWOOLE_SOCK_TCP);
 
-if ($rcon->connect()) {
-  $rcon->sendCommand("say Hello World!");
+$client->set([
+    'open_length_check' => true,
+    'package_length_type' => 'V',
+    'package_length_offset' => 0, // The offset of package length variable
+    'package_body_offset' => 4, // The offset of body of the package
+]);
+
+$minecraftClient = new MinecraftClient($client, $host, $port, $password, $timeout);
+$bukkitCommands = new BukkitCommandWrapper($minecraftClient, new CommandFormatter());
+
+if ($minecraftClient->connect()) {
+    echo $bukkitCommands->sendCommand('say Hello World!');
 }
 ```
