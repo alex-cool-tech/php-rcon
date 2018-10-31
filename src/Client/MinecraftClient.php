@@ -2,6 +2,8 @@
 
 namespace AlexCool\Rcon\Client;
 
+use Swoole\Client;
+
 /**
  * See https://developer.valvesoftware.com/wiki/Source_RCON_Protocol for
  * more information about Source RCON Packets
@@ -24,6 +26,11 @@ class MinecraftClient implements ClientInterface
     const PACKET_COMMAND = 6;
 
     /**
+     * @var Client
+     */
+    private $client;
+
+    /**
      * @var string
      */
     private $host;
@@ -44,11 +51,6 @@ class MinecraftClient implements ClientInterface
     private $timeout;
 
     /**
-     * @var resource
-     */
-    private $socket;
-
-    /**
      * @var bool
      */
     private $authorized = false;
@@ -59,13 +61,15 @@ class MinecraftClient implements ClientInterface
     private $lastResponse = '';
 
     /**
+     * @param Client $client
      * @param string $host
      * @param int $port
      * @param string $password
      * @param int $timeout
      */
-    public function __construct(string $host, int $port, string $password, int $timeout)
+    public function __construct(Client $client, string $host, int $port, string $password, int $timeout)
     {
+        $this->client = $client;
         $this->host = $host;
         $this->port = $port;
         $this->password = $password;
@@ -89,18 +93,16 @@ class MinecraftClient implements ClientInterface
      */
     public function connect()
     {
-        $this->socket = fsockopen($this->host, $this->port, $errNo, $errStr, $this->timeout);
+        $this->client->connect($this->host, $this->port, $this->timeout);
 
-        if (!$this->socket) {
-            $this->lastResponse = $errStr;
-            return false;
+        if ($this->client->isConnected()) {
+            // check authorization
+            return $this->authorize();
         }
 
-        //set timeout
-        stream_set_timeout($this->socket, 3, 0);
+        $this->lastResponse = $this->client->recv();
 
-        // check authorization
-        return $this->authorize();
+        return false;
     }
 
     /**
@@ -110,8 +112,8 @@ class MinecraftClient implements ClientInterface
      */
     public function disconnect()
     {
-        if ($this->socket) {
-            fclose($this->socket);
+        if ($this->client->isConnected()) {
+            $this->client->close();
         }
     }
 
@@ -187,7 +189,7 @@ class MinecraftClient implements ClientInterface
      */
     private function writePacket(int $id, int $type, $body = '')
     {
-        /*
+        /**
          * Size -> 32-bit little-endian Signed Integer Varies, see below.
          * ID -> 32-bit little-endian Signed Integer Varies, see below.
          * Type -> 32-bit little-endian Signed Integer Varies, see below.
@@ -202,11 +204,8 @@ class MinecraftClient implements ClientInterface
         // get packet size.
         $packetSize = strlen($packet);
 
-        // attach size to packet.
-        $packet = pack('V', $packetSize) . $packet;
-
-        // write packet.
-        fwrite($this->socket, $packet, strlen($packet));
+        // send prepared packet
+        $this->client->send(pack('V', $packetSize) . $packet);
     }
 
     /**
@@ -216,20 +215,13 @@ class MinecraftClient implements ClientInterface
      */
     private function readPacket()
     {
-        //get packet size.
-        $sizeData = fread($this->socket, 4);
-        $sizePack = unpack('V1size', $sizeData);
-        $size = $sizePack['size'];
-
-        // if size is > 4096, the response will be in multiple packets.
-        // this needs to be address. get more info about multi-packet responses
-        // from the RCON protocol specification at
-        // https://developer.valvesoftware.com/wiki/Source_RCON_Protocol
-        // currently, this script does not support multi-packet responses.
-
-        $packetData = fread($this->socket, $size);
-        $packetPack = unpack('V1id/V1type/a*body', $packetData);
-
-        return $packetPack;
+        /**
+         * If size is > 4096, the response will be in multiple packets. This needs to be address.
+         * Get more info about multi-packet responses from the RCON protocol specification at
+         * https://developer.valvesoftware.com/wiki/Source_RCON_Protocol
+         *
+         * Currently, this script does not support multi-packet responses.
+         */
+        return unpack('V1size/V1id/V1type/a*body', $this->client->recv());
     }
 }

@@ -19,5 +19,8 @@
 		"psr-4": { 
 			"AlexCool\\Rcon\\": "src/"
 		}
-    } 
+    },
+	"require-dev": {
+		"eaglewu/swoole-ide-helper": "dev-master"
+	}
 }
