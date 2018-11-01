@@ -9,7 +9,7 @@ use AlexCool\Rcon\Client\ClientInterface;
  * See https://developer.valvesoftware.com/wiki/Source_RCON_Protocol for
  * more information about Source RCON Packets
  *
- * @author thedudeguy
+ * @author Chris Churchwell <chris@chrischurchwell.com>
  * @author Aleksandr Kulina <chipka94@gmail.com>
  *
  * @package AlexCool\Rcon\Client
