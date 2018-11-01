@@ -3,7 +3,7 @@
     "type": "library",
     "description": "Rcon library for PHP",
     "keywords": ["rcon", "minecraft"],
-    "homepage": "https://github.com/alexcool94/PHP-Rcon",
+    "homepage": "https://github.com/alexcool94/php-rcon",
     "license": "MIT",
     "authors": [
         {"name": "Aleksandr Kulina", "email": "chipka94@gmail.com"}
