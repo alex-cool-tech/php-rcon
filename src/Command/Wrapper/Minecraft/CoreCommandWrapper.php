@@ -32,21 +32,23 @@ class CoreCommandWrapper extends AbstractCommandWrapper
      * Shows a list of server or plugin commands in the console or in-game.
      *
      * @param string|null $topic
-     * @param int|null $pageNumber
+     * @param int $pageNumber
      *
      * @return bool|mixed
      */
-    public function help(string $topic = null, int $pageNumber = null)
+    public function help(string $topic = null, int $pageNumber = 1)
     {
-        $this->commandFormatter->addElement('%s', self::HELP_COMMAND);
+        $this
+            ->commandFormatter
+            ->addElement('%s', self::HELP_COMMAND);
 
         if ($topic) {
             $this->commandFormatter->addElement('%s', $topic);
         }
 
-        if ($pageNumber) {
-            $this->commandFormatter->addElement('%u', $pageNumber);
-        }
+        $this
+            ->commandFormatter
+            ->addElement('%u', $pageNumber);
 
         return $this->sendCommand($this->commandFormatter->compile());
     }
