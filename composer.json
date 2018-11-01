@@ -1,7 +1,7 @@
 {
     "name": "alex.cool/rcon",
     "type": "library",
-    "description": "Simple Rcon class for php",
+    "description": "Rcon library for PHP",
     "keywords": ["rcon", "minecraft"],
     "homepage": "https://github.com/alexcool94/PHP-Rcon",
     "license": "MIT",
