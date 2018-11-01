@@ -3,6 +3,8 @@
 namespace AlexCool\Rcon\Command\Wrapper\Minecraft;
 
 /**
+ * @author Aleksandr Kulina <chipka94@gmail.com>
+ *
  * @package AlexCool\Rcon\Command\Wrapper\Minecraft
  */
 final class BukkitCommandWrapper extends CoreCommandWrapper

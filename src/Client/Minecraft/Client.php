@@ -1,21 +1,20 @@
 <?php
 
-namespace AlexCool\Rcon\Client;
+namespace AlexCool\Rcon\Client\Minecraft;
 
-use Swoole\Client;
+use Swoole\Client as SwooleClient;
+use AlexCool\Rcon\Client\ClientInterface;
 
 /**
  * See https://developer.valvesoftware.com/wiki/Source_RCON_Protocol for
  * more information about Source RCON Packets
  *
- * @author alex.cool
- * @link https://github.com/Chipka94/PHP-Minecraft-Rcon
- */
-
-/**
+ * @author thedudeguy
+ * @author Aleksandr Kulina <chipka94@gmail.com>
+ *
  * @package AlexCool\Rcon\Client
  */
-class MinecraftClient implements ClientInterface
+final class Client implements ClientInterface
 {
     const SERVER_DATA_AUTH = 3;
     const SERVER_DATA_AUTH_RESPONSE = 2;
@@ -26,7 +25,7 @@ class MinecraftClient implements ClientInterface
     const PACKET_COMMAND = 6;
 
     /**
-     * @var Client
+     * @var SwooleClient
      */
     private $client;
 
@@ -46,7 +45,7 @@ class MinecraftClient implements ClientInterface
     private $password;
 
     /**
-     * @var int
+     * @var float
      */
     private $timeout;
 
@@ -61,19 +60,31 @@ class MinecraftClient implements ClientInterface
     private $lastResponse = '';
 
     /**
-     * @param Client $client
+     * @param SwooleClient $client
      * @param string $host
      * @param int $port
      * @param string $password
-     * @param int $timeout
+     * @param float $timeout
      */
-    public function __construct(Client $client, string $host, int $port, string $password, int $timeout)
+    public function __construct(SwooleClient $client, string $host, int $port, string $password, float $timeout)
     {
         $this->client = $client;
         $this->host = $host;
         $this->port = $port;
         $this->password = $password;
         $this->timeout = $timeout;
+    }
+
+    /**
+     * @param ClientBuilder $builder
+     *
+     * @return Client
+     */
+    public static function build(ClientBuilder $builder)
+    {
+        return $builder
+            ->createSwooleClient()
+            ->getClient();
     }
 
     /**
@@ -93,16 +104,16 @@ class MinecraftClient implements ClientInterface
      */
     public function connect()
     {
-        $this->client->connect($this->host, $this->port, $this->timeout);
+        if (!$this->client->isConnected()) {
+            $this->client->connect($this->host, $this->port, $this->timeout);
+        }
 
-        if ($this->client->isConnected()) {
+        if (!$this->isAuthorized()) {
             // check authorization
             return $this->authorize();
         }
 
-        $this->lastResponse = $this->client->recv();
-
-        return false;
+        return true;
     }
 
     /**
@@ -118,16 +129,6 @@ class MinecraftClient implements ClientInterface
     }
 
     /**
-     * True if socket is connected and authorized.
-     *
-     * @return boolean
-     */
-    public function isConnected()
-    {
-        return $this->authorized;
-    }
-
-    /**
      * Send a command to the connected server.
      *
      * @param string $command
@@ -136,7 +137,7 @@ class MinecraftClient implements ClientInterface
      */
     public function sendCommand(string $command)
     {
-        if (!$this->isConnected()) {
+        if (!$this->isAuthorized()) {
             return false;
         }
 
@@ -154,6 +155,16 @@ class MinecraftClient implements ClientInterface
         }
 
         return false;
+    }
+
+    /**
+     * True if socket is authorized.
+     *
+     * @return boolean
+     */
+    public function isAuthorized()
+    {
+        return $this->authorized;
     }
 
     /**

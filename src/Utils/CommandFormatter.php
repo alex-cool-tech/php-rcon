@@ -2,6 +2,11 @@
 
 namespace AlexCool\Rcon\Utils;
 
+/**
+ * @author Aleksandr Kulina <chipka94@gmail.com>
+ *
+ * @package AlexCool\Rcon\Utils
+ */
 final class CommandFormatter
 {
     /**

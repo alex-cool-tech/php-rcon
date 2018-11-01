@@ -6,6 +6,8 @@ use AlexCool\Rcon\Client\ClientInterface;
 use AlexCool\Rcon\Utils\CommandFormatter;
 
 /**
+ * @author Aleksandr Kulina <chipka94@gmail.com>
+ *
  * @package AlexCool\Rcon\Command\Wrapper
  */
 abstract class AbstractCommandWrapper

@@ -3,6 +3,8 @@
 namespace AlexCool\Rcon\Client;
 
 /**
+ * @author Aleksandr Kulina <chipka94@gmail.com>
+ *
  * @package AlexCool\Rcon\Client
  */
 interface ClientInterface
