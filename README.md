@@ -3,12 +3,9 @@ PHP-Rcon
 [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/alexcool94/PHP-Rcon/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/alexcool94/PHP-Rcon/?branch=master)
 [![Build Status](https://scrutinizer-ci.com/g/alexcool94/PHP-Rcon/badges/build.png?b=master)](https://scrutinizer-ci.com/g/alexcool94/PHP-Rcon/build-status/master)
 
-Simple Rcon class for php.
-
 Project forked from [thedudeguy/PHP-Minecraft-Rcon](https://github.com/thedudeguy/PHP-Minecraft-Rcon)
 
 ## Installation
-### Using Composer
 This Rcon library may be installed by issuing the following command:
 ```bash
 $ composer require alex.cool/rcon
