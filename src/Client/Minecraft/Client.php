@@ -98,6 +98,16 @@ final class Client implements ClientInterface
     }
 
     /**
+     * True if socket is connected and authorized.
+     *
+     * @return boolean
+     */
+    public function isConnected(): bool
+    {
+        return $this->authorized;
+    }
+
+    /**
      * Connect to a server.
      *
      * @return boolean
@@ -105,15 +115,13 @@ final class Client implements ClientInterface
     public function connect()
     {
         if (!$this->client->isConnected()) {
-            $this->client->connect($this->host, $this->port, $this->timeout);
+            return $this->client->connect($this->host, $this->port, $this->timeout)
+                ? $this->authorize()
+                : false;
         }
 
-        if (!$this->isAuthorized()) {
-            // check authorization
-            return $this->authorize();
-        }
-
-        return true;
+        // check authorization
+        return $this->authorize();
     }
 
     /**
@@ -137,7 +145,7 @@ final class Client implements ClientInterface
      */
     public function sendCommand(string $command)
     {
-        if (!$this->isAuthorized()) {
+        if (!$this->authorized) {
             return false;
         }
 
@@ -155,16 +163,6 @@ final class Client implements ClientInterface
         }
 
         return false;
-    }
-
-    /**
-     * True if socket is authorized.
-     *
-     * @return boolean
-     */
-    public function isAuthorized()
-    {
-        return $this->authorized;
     }
 
     /**
