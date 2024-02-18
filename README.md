@@ -1,4 +1,4 @@
-PHP-Rcon
+PHP Rcon
 ==================
 [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/alexcool94/PHP-Rcon/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/alexcool94/PHP-Rcon/?branch=master)
 [![Build Status](https://scrutinizer-ci.com/g/alexcool94/PHP-Rcon/badges/build.png?b=master)](https://scrutinizer-ci.com/g/alexcool94/PHP-Rcon/build-status/master)
@@ -8,7 +8,6 @@ Simple Rcon class for php.
 Project forked from [alex-cool-tech/php-rcon](https://github.com/alex-cool-tech/php-rcon)
 
 ## Installation
-### Using Composer
 This Rcon library may be installed by issuing the following command:
 ```bash
 $ composer require bretthaddoak/php-rcon
@@ -30,6 +29,6 @@ $timeout = 3; // How long to timeout.
 $rcon = new RCONClient($host, $port, $password, $timeout);
 
 if ($rcon->connect()) {
-  $rcon->sendCommand("say Hello World!");
+    echo $rcon->sendCommand('say Hello World!');
 }
 ```
