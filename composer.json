@@ -1,5 +1,5 @@
 {
-	"name": "bretthaddoak/rcon",
+	"name": "bretthaddoak/php-rcon",
 	"type": "library",
 	"description": "Simple Rcon class for php",
 	"keywords": ["rcon", "minecraft"],
