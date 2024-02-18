@@ -1,23 +1,23 @@
 {
-	"name": "alex.cool/rcon",
+	"name": "bretthaddoak/rcon",
 	"type": "library",
 	"description": "Simple Rcon class for php",
 	"keywords": ["rcon", "minecraft"],
-	"homepage": "https://github.com/alexcool94/PHP-Rcon",
+	"homepage": "https://github.com/bretthaddoak/php-rcon",
 	"license": "MIT",
 	"authors": [
-		{"name": "Aleksandr Kulina", "email": "chipka94@gmail.com"}
+		{"name": "Brett Haddoak", "email": "brett@bretthaddoak.com"}
 	],
 	"require": {
 		"php": "^7.1"
 	},
 	"support": {
-		"issues": "https://github.com/alexcool94/PHP-Rcon/issues",
-		"source": "https://github.com/alexcool94/PHP-Rcon/tree/master"
+		"issues": "https://github.com/bretthaddoak/php-rcon/issues",
+		"source": "https://github.com/bretthaddoak/php-rcon/tree/master"
 	},
 	"autoload": {
 		"psr-4": { 
-			"AlexCool\\Rcon\\": "src/"
+			"BrettHaddoak\\Rcon\\": "src/"
 		}
     } 
 }
