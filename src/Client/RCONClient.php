@@ -1,19 +1,19 @@
 <?php
 
-namespace AlexCool\Rcon\Client;
+namespace BrettHaddoak\Rcon\Client;
 
 /**
  * See https://developer.valvesoftware.com/wiki/Source_RCON_Protocol for
  * more information about Source RCON Packets
  *
- * @author alex.cool
- * @link https://github.com/Chipka94/PHP-Minecraft-Rcon
+ * @author brett haddoak
+ * @link https://github.com/bretthaddoak/php-rcon
  */
 
 /**
- * @package AlexCool\Rcon\Client
+ * @package BrettHaddoak\Rcon\Client
  */
-class MinecraftClient implements ClientInterface
+class RconClient implements ClientInterface
 {
     const SERVER_DATA_AUTH = 3;
     const SERVER_DATA_AUTH_RESPONSE = 2;

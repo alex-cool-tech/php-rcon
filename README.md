@@ -5,13 +5,13 @@ PHP-Rcon
 
 Simple Rcon class for php.
 
-Project forked from [thedudeguy/PHP-Minecraft-Rcon](https://github.com/thedudeguy/PHP-Minecraft-Rcon)
+Project forked from [alex-cool-tech/php-rcon](https://github.com/alex-cool-tech/php-rcon)
 
 ## Installation
 ### Using Composer
 This Rcon library may be installed by issuing the following command:
 ```bash
-$ composer require alex.cool/rcon
+$ composer require bretthaddoak/php-rcon
 ```
 
 ## Example
@@ -20,14 +20,14 @@ For this script to work, rcon must be enabled on the server, by setting `enable-
 ```php
 require_once __DIR__ . '/vendor/autoload.php';
 
-use AlexCool\Rcon\Client\MinecraftClient;
+use BrettHaddoak\Rcon\Client\RCONClient;
 
-$host = 'some.minecraftserver.com'; // Server host name or IP
+$host = 'some.server.com'; // Server host name or IP
 $port = 25575; // Port rcon is listening on
 $password = 'server-rcon-password'; // rcon.password setting set in server.properties
 $timeout = 3; // How long to timeout.
 
-$rcon = new MinecraftClient($host, $port, $password, $timeout);
+$rcon = new RCONClient($host, $port, $password, $timeout);
 
 if ($rcon->connect()) {
   $rcon->sendCommand("say Hello World!");

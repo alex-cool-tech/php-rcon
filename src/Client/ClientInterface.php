@@ -1,9 +1,9 @@
 <?php
 
-namespace AlexCool\Rcon\Client;
+namespace BrettHaddoak\Rcon\Client;
 
 /**
- * @package AlexCool\Rcon\Client
+ * @package BrettHaddoak\Rcon\Client
  */
 interface ClientInterface
 {
