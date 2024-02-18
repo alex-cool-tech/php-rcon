@@ -9,7 +9,7 @@
 		{"name": "Brett Haddoak", "email": "brett@bretthaddoak.com"}
 	],
 	"require": {
-		"php": "^7.1"
+		"php": "^8.2"
 	},
 	"support": {
 		"issues": "https://github.com/bretthaddoak/php-rcon/issues",
